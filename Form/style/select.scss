@@ -1,0 +1,95 @@
+/**
+ * Some personal React and Redux utilities
+ * Copyright (C) 2019 Bowser65
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../vars";
+
+.container {
+  margin-top: 5px;
+  padding: 0 10px;
+  color: #fff;
+  height: 38px;
+  background-color: rgba(0, 0, 0, .1);
+  border-color: rgba(0, 0, 0, .3);
+  width: 100%;
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 3px;
+  transition: .2s;
+  font-size: 16px;
+  outline: 0;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+}
+
+.field {
+  height: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  > * {
+    margin-right: 10px;
+
+    &:nth-last-child(1) {
+      margin-left: auto;
+      margin-right: 0;
+    }
+  }
+}
+
+.placeholder {
+  opacity: .4;
+}
+
+.options {
+  display: none;
+  position: absolute;
+  max-height: 210px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  transform: translateY(100%);
+  background-color: $darkPrimary;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  height: 42px;
+  padding: 10px 15px;
+  border-bottom: 1px $darkHighlight solid;
+  transition: .3s;
+
+  &:hover {
+    margin-left: 5px;
+  }
+
+  > * {
+    margin-right: 10px;
+  }
+}
+
+.focus {
+  border-color: $primary;
+
+  .options {
+    display: flex;
+  }
+}

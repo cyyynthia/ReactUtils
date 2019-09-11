@@ -1,0 +1,104 @@
+/**
+ * Some personal React and Redux utilities
+ * Copyright (C) 2019 Bowser65
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../vars";
+
+@mixin button($name, $color) {
+  .button.color-#{$name} {
+    color: $color;
+    text-decoration: none;
+
+    &:disabled {
+      cursor: not-allowed;
+      opacity: .5;
+    }
+
+    &.look-filled {
+      color: #fff;
+      background-color: $color;
+
+      &:hover {
+        background-color: darken($color, 5);
+      }
+    }
+
+    &.look-outlined {
+      border: 1px rgba($color, .3) solid;
+
+      &:hover {
+        border-color: rgba($color, .6);
+      }
+    }
+
+    &.look-ghost {
+      background-color: rgba($color, .1);
+    }
+
+    &.look-link:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// ------
+
+.button {
+  width: auto;
+  outline: 0;
+  color: #fff;
+  transition: .2s ease;
+  align-items: center;
+  background: none;
+  border: none;
+  border-radius: 3px;
+  box-sizing: border-box;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  justify-content: center;
+  line-height: 16px;
+  padding: 2px 16px;
+  position: relative;
+  user-select: none;
+  cursor: pointer;
+  font-family: 'Open Sans', 'sans-serif';
+
+  &.size-small {
+    height: 32px;
+    min-height: 32px;
+    min-width: 60px;
+  }
+
+  &.size-medium {
+    height: 38px;
+    min-height: 38px;
+    min-width: 96px;
+  }
+}
+
+@include button("brand", $primary);
+@include button("blue", $blue);
+@include button("green", $green);
+@include button("orange", $orange);
+@include button("red", $red);
+@include button("white", $light-secondary);
+@include button("black", $dark-highlight);
+
+.look-filled.color-white {
+  color: #000;
+}

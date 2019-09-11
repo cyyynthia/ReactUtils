@@ -1,0 +1,85 @@
+/**
+ * Some personal React and Redux utilities
+ * Copyright (C) 2019 Bowser65
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import "../../vars";
+
+.container {
+  width: 24px;
+  height: 24px;
+  border-radius: 3px;
+  border: 3px #5d5d5d solid;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: border .2s;
+
+  &:before, &:after {
+    transition: opacity .2s;
+  }
+
+  &:before {
+    content: '';
+    opacity: 0;
+    background-color: $primary;
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+  }
+
+  &:after {
+    content: '';
+    opacity: 0;
+    display: block;
+    width: 12px;
+    height: 6px;
+    margin-top: -3px;
+    transform: rotate(-45deg);
+    border-left: 3px #fff solid;
+    border-bottom: 3px #fff solid;
+  }
+
+  &.enabled {
+    border-color: $primary;
+
+    &:before, &:after {
+      opacity: 1;
+    }
+  }
+
+  &.radio, &.radio:before {
+    border-radius: 50%;
+  }
+
+  &.disabled {
+    opacity: .7;
+  }
+}
+
+.checkbox {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  padding: 0;
+  margin: 0;
+  z-index: 2;
+  cursor: pointer;
+}
