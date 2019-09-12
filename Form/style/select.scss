@@ -66,7 +66,7 @@
   right: 0;
   z-index: 999;
   transform: translateY(100%);
-  background-color: $darkPrimary;
+  background-color: $dark-primary;
 }
 
 .option {
@@ -74,7 +74,7 @@
   align-items: center;
   height: 42px;
   padding: 10px 15px;
-  border-bottom: 1px $darkHighlight solid;
+  border-bottom: 1px $dark-highlight solid;
   transition: .3s;
 
   &:hover {
