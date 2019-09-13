@@ -24,12 +24,10 @@ import Button from '../Form/Button'
 
 import style from './style.scss'
 
-let Component
+let Component = null
 try {
   Component = require('react-intl').FormattedMessage
-} catch (e) {
-  Component = ({ defaultMessage }) => defaultMessage
-}
+} catch (e) {}
 
 const CookiesConsent = React.memo(
   ({ papers, i18n, localStorage }) => {
@@ -40,15 +38,15 @@ const CookiesConsent = React.memo(
     }, [])
 
     if (saidOk) return null
-    const blabla = 'Cookies help us deliver our Service. By using the website, you agree to our use of cookies, as described in our'
-    const defaultMessage = `${blabla} <lnk>Privacy Policy</lnk>.`
-
     /* eslint-disable react/display-name */
     return <div className={style.cookiesConsent}>
       <p>
-        {i18n
-          ? <Component id={i18n} defaultMessage={defaultMessage} values={{ lnk: m => <Link to={papers}>{m}</Link> }}/>
-          : <>{blabla}&nbsp;<Link to={papers}>Privacy Policy</Link>.</>}
+        {i18n && Component
+          ? <Component id={i18n} values={{ lnk: m => <Link to={papers}>{m}</Link> }}/>
+          : <>
+            Cookies help us deliver our Service. By using the website, you agree to our use of cookies, as described
+            in our&nbsp;<Link to={papers}>Privacy Policy</Link>.
+          </>}
       </p>
       <Button look={Button.Looks.GHOST} color={Button.Colors.BRAND} onClick={setSaidOk}>I agree</Button>
     </div>
