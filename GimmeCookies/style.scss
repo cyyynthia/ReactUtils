@@ -21,9 +21,9 @@
 .cookies-consent {
   position: absolute;
   bottom: 25px;
-  left: 15%;
-  right: 15%;
-  height: 62px;
+  left: 25%;
+  right: 25%;
+  min-height: 62px;
   background-color: $dark-highlight;
   display: flex;
   justify-content: space-between;
@@ -31,4 +31,5 @@
   padding: 0 25px;
   border-radius: 5px;
   box-shadow: 0 0 10px 3px $primary;
+  z-index: 6969;
 }

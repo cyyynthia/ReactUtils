@@ -16,3 +16,12 @@
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+export const pushNotice = (id, type, text, button) => ({
+  type: '@ReactUtils/PUSH_NOTICE', id, noticeType: type, text, button
+})
+
+export const dismissNotice = (id) => ({ type: '@ReactUtils/DISMISS_NOTICE', id })
+
+export const reducer = () => {
+
+}

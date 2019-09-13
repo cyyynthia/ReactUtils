@@ -24,8 +24,15 @@ import Button from '../Form/Button'
 
 import style from './style.scss'
 
+let Component
+try {
+  Component = require('react-intl').FormattedMessage
+} catch (e) {
+  Component = ({ defaultMessage }) => defaultMessage
+}
+
 const CookiesConsent = React.memo(
-  ({ papers, localStorage }) => {
+  ({ papers, i18n, localStorage }) => {
     const [ saidOk, setSaidOk0 ] = React.useState(localStorage.getItem('cookies-consent') === 'true')
     const setSaidOk = React.useCallback(() => {
       setSaidOk0(true)
@@ -33,16 +40,25 @@ const CookiesConsent = React.memo(
     }, [])
 
     if (saidOk) return null
+    const blabla = 'Cookies help us deliver our Service. By using the website, you agree to our use of cookies, as described in our'
+    const defaultMessage = `${blabla} <lnk>Privacy Policy</lnk>.`
+
+    /* eslint-disable react/display-name */
     return <div className={style.cookiesConsent}>
       <p>
-        Cookies help us deliver our Service. By using the website or clicking I agree, you agree to our use of cookies,
-        as described in our <Link to={papers}>Privacy Policy</Link>.
+        {i18n
+          ? <Component id={i18n} defaultMessage={defaultMessage} values={{ lnk: m => <Link to={papers}>{m}</Link> }}/>
+          : <>{blabla}&nbsp;<Link to={papers}>Privacy Policy</Link>.</>}
       </p>
       <Button look={Button.Looks.GHOST} color={Button.Colors.BRAND} onClick={setSaidOk}>I agree</Button>
     </div>
+    /* eslint-enable react/display-name */
   })
 
 // React attributes
 CookiesConsent.displayName = 'CookiesConsent'
-CookiesConsent.defaultProps = { papers: '/legal/privacy' }
+CookiesConsent.defaultProps = {
+  papers: '/legal/privacy',
+  i18n: null
+}
 export default hot(module)(CookiesConsent)
