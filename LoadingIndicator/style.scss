@@ -1,0 +1,140 @@
+/**
+ * Some personal React and Redux utilities
+ * Copyright (C) 2019 Bowser65
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+@import '../vars';
+
+// Spinner
+.spinner {
+  animation: waiting-spinner 2s linear infinite;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+
+  .wrapper {
+    width: 52px;
+    height: 52px;
+    position: relative;
+    background-color: rgba(0, 0, 0, 0.52);
+    border-radius: 5px;
+    transform: translateY(-100%);
+  }
+
+  &.big {
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    margin-left: -25px;
+  }
+
+  &.small {
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+
+    .path {
+      stroke-width: 8;
+    }
+  }
+}
+
+.path {
+  animation: waiting-spinner-path 2s ease-in-out infinite;
+  stroke-dasharray: 1, 200;
+  stroke-dashoffset: 0;
+  fill: none;
+  stroke-width: 6;
+  stroke-miterlimit: 10;
+  stroke-linecap: round;
+  stroke: lighten($primary, 10);
+
+  &.light {
+    animation-delay: .15s;
+    opacity: .6;
+  }
+
+  &.dark {
+    animation-delay: .23s;
+    stroke: darken($primary, 20);
+  }
+}
+
+// Balls
+.ball {
+  border-radius: 50%;
+  margin: 0 2px;
+  width: 8px;
+  height: 8px;
+  animation: waiting-balls 1s infinite ease-in-out;
+  background-color: #fff;
+  opacity: 1;
+
+  &s {
+    height: 19px;
+    display: flex;
+    align-items: center;
+  }
+
+  &:nth-of-type(2) {
+    animation-delay: .2s;
+  }
+
+  &:nth-of-type(3) {
+    animation-delay: .4s;
+  }
+}
+
+/* Keyframes */
+@keyframes waiting-spinner {
+  to {
+    transform: rotate(1turn);
+  }
+}
+
+@keyframes waiting-spinner-path {
+  0% {
+    stroke-dasharray: 1, 200;
+    stroke-dashoffset: 0;
+  }
+  50% {
+    stroke-dasharray: 130, 200;
+  }
+  to {
+    stroke-dasharray: 130, 200;
+    stroke-dashoffset: -124;
+  }
+}
+
+@keyframes waiting-balls {
+  from {
+    opacity: 1;
+    transform: scale(1)
+  }
+  50% {
+    opacity: .3;
+    transform: scale(.7)
+  }
+  to {
+    opacity: 1;
+    transform: scale(1)
+  }
+}
