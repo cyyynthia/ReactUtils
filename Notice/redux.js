@@ -22,7 +22,7 @@ export const pushNotice = (id, type, text, button) => ({
 
 export const dismissNotice = (id) => ({ type: '@ReactUtils/DISMISS_NOTICE', id })
 
-export const reducer = (action, state) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case '@ReactUtils/PUSH_NOTICE':
       return { ...state, notices: [ action.notice, ...state.notices ] }
