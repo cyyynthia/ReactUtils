@@ -31,6 +31,19 @@
   border-radius: 5px;
   box-shadow: 0 0 10px 3px $primary;
   z-index: 6969;
+
+  button {
+    margin-left: 10px;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .cookies-consent {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-radius: 0;
+  }
 }
 
 :global(.theme-dark) .cookies-consent{
