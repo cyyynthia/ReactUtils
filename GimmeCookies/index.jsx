@@ -30,7 +30,7 @@ try {
 } catch (e) {}
 
 const CookiesConsent = React.memo(
-  ({ papers, i18n, localStorage }) => {
+  ({ papers, i18n, localStorage, children }) => {
     const [ saidOk, setSaidOk0 ] = React.useState(localStorage.getItem('cookies-consent') === 'true')
     const setSaidOk = React.useCallback(() => {
       setSaidOk0(true)
@@ -43,7 +43,7 @@ const CookiesConsent = React.memo(
       <p>
         {i18n && Component
           ? <Component id={i18n} values={{ lnk: m => <Link to={papers}>{m}</Link> }}/>
-          : <>
+          : children || <>
             Cookies help us deliver our Service. By using the website, you agree to our use of cookies, as described
             in our&nbsp;<Link to={papers}>Privacy Policy</Link>.
           </>}

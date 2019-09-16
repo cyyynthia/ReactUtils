@@ -24,7 +24,6 @@
   left: 25%;
   right: 25%;
   min-height: 62px;
-  background-color: $dark-highlight;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,4 +31,12 @@
   border-radius: 5px;
   box-shadow: 0 0 10px 3px $primary;
   z-index: 6969;
+}
+
+:global(.theme-dark) .cookies-consent{
+  background-color: $dark-highlight;
+}
+
+:global(.theme-light) .cookies-consent {
+  background-color: $light-highlight;
 }
