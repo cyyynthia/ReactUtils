@@ -18,37 +18,32 @@
 
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import style from './style.scss'
-import { dismissNotice } from '@react-utils/Notice/redux'
 
-const Notice = React.memo(
-  ({ color, text, button, noDismiss }) => {
-    const dispatch = useDispatch()
-    const dismiss = () => dispatch(dismissNotice())
+const NoticeContainer = React.memo(
+  () => {
+    const notice = (useSelector(store => store.app && store.app.notices) || []).sort(n =>
+      n.noDismiss
+        ? 1
+        : -1
+    ).shift()
+    if (!notice) return null
 
     const classNames = [ style.notice ]
-    color ? classNames.push(color) : classNames.push(style.colorDark)
+    notice.color
+      ? classNames.push(notice.color)
+      : classNames.push(style.colorDark)
 
-    return <div className={classNames.join(' ')}>
-      {text}
-      {button && <button className={style.button} onClick={dismiss() || button.callback}>{button.text}</button>}
-      {!noDismiss && <span className={style.dismiss} onClick={dismiss}/>}
-    </div>
+    return <Notice
+      text={notice.text}
+      color={notice.color}
+      button={notice.button}
+      noDismiss={notice.noDismiss}
+    />
   }
 )
 
-Notice.Colors = {
-  BRAND: style.colorBrand,
-  GRADIENT: style.colorGradient,
-  GREEN: style.colorGreen,
-  ORANGE: style.colorOrange,
-  RED: style.colorRed,
-  BLUE: style.colorBlue,
-  BLURPLE: style.colorBlurple,
-  DARK: style.colorDark
-}
-
-Notice.displayName = 'Notice'
-export default hot(module)(Notice)
+NoticeContainer.displayName = 'NoticeContainer'
+export default hot(module)(NoticeContainer)
